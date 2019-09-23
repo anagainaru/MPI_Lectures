@@ -1,10 +1,16 @@
+
+<img src="./mpi_lecture.png" alt="Logo" align="right" width="400"/>
+
 # MPI Lectures 
-### for the CS6320 class *Algorithms for parallel computing*
+### CS6320 *Algorithms for parallel computing*
 #### 1st and 3rd October 2019
 
 Slides at: Link
 
+&nbsp;
+
 **Table of contents**
+---
 
 1. Introduction to MPI
     - Library and implementation characteristics
@@ -29,4 +35,7 @@ Slides at: Link
 
 6. Profiling MPI applications
 
+&nbsp;
+
 **Code examples**
+---
