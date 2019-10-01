@@ -1,6 +1,9 @@
-# Get the rank and size in the original communicator
+#!/usr/bin/env python 
 from mpi4py import MPI
 
+# Example for splitting the processes in two groups
+
+# Get the rank and size in the original communicator
 world_rank = MPI.COMM_WORLD.Get_rank()
 world_size = MPI.COMM_WORLD.Get_size()
 
