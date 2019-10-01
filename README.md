@@ -5,7 +5,7 @@
 ### CS6320 *Algorithms for parallel computing*
 #### 1st and 3rd October 2019
 
-Slides at: Link
+Slides at: https://anagainaru.github.io/MPI_Lectures
 
 &nbsp;
 
