@@ -1,5 +1,8 @@
+#!/usr/bin/env python 
 from mpi4py import MPI
 import numpy as np
+
+# Example for measuring the Bcast time
 
 comm = MPI.COMM_WORLD
 size = comm.Get_size()

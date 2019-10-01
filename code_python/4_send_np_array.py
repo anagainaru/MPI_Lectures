@@ -1,5 +1,8 @@
+#!/usr/bin/env python 
 from mpi4py import MPI
 import numpy as np
+
+# Example for sending a numpy array
 
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()

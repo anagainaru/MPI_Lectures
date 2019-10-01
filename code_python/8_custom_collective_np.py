@@ -1,5 +1,10 @@
+#!/usr/bin/env python 
 from mpi4py import MPI
 import numpy as np
+
+# Example of implementing a custom reduction operation
+# that identifies array indexes with odd numbers
+# in any of the processors
 
 def unpack_array(array_mem, dt):
     a = array_mem.tobytes()

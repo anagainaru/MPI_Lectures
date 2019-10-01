@@ -1,4 +1,7 @@
+#!/usr/bin/env python 
 from mpi4py import MPI
+
+# Example for sending a dictionary
 
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()

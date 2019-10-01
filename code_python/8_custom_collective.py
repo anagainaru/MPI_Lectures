@@ -1,4 +1,8 @@
+#!/usr/bin/env python 
 from mpi4py import MPI
+
+# Example for implementing a custom reduction operation
+# consisting of the products of 2 Complex numbers
 
 from Complex import Complex
 # Complex class defined in a separate file
