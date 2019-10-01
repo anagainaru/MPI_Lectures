@@ -13925,7 +13925,26 @@ World rank/size: 3/4 -- New rank/size: 1/2</code></pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="2.-Describe-the-data">2. Describe the data<a class="anchor-link" href="#2.-Describe-the-data">&#182;</a></h1><ul>
+<h1 id="Why-datatypes?">Why datatypes?<a class="anchor-link" href="#Why-datatypes?">&#182;</a></h1><ul>
+<li>Since all data is labeled by type, an MPI implementation can support communication between processes on machines with very different memory representations and lengths of elementary datatypes (heterogeneous communication).</li>
+<li>Specifying application-oriented layout of data in memory<ul>
+<li>can reduce memory-to-memory copies in the implementation</li>
+<li>allows the use of special hardware (scatter/gather) when available</li>
+</ul>
+</li>
+<li>Specifying application-oriented layout of data on a file<ul>
+<li>can reduce system calls and physical disk I/O</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="How-to-create-a-new-datatype">How to create a new datatype<a class="anchor-link" href="#How-to-create-a-new-datatype">&#182;</a></h1><ul>
 <li>Create an MPI datatype from a general set of datatypes, displacements, and block sizes</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">MPI_Type_create_struct</span><span class="p">(</span>
