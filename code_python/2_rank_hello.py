@@ -1,4 +1,7 @@
+#!/usr/bin/env python 
 from mpi4py import MPI
+
+# Hello world from each rank
 
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
