@@ -39,3 +39,28 @@ Slides at: Link
 
 **Code examples**
 ---
+
+1. `hello_world.py`
+    - Basic hello world example
+2. `rank_hello.py`
+    - Hello world for each rank
+3. `communicator_split.py`
+    - Splitting the processes in two groups based on their ranks (keeping the order of their original ranks)
+4. Blocking send examples
+    - `send_dict.py` - simple blocking send of a dictionary
+    - `send_np_array.py` - simple example of sending a numpy array
+    - `send_dtype.py` - example of sending a custom datatype (tuple of int32, double64)
+5. `ping_pong.py` 
+    - Simple non-blocking communication example
+6. `sendrecv.py` 
+    - Example of using the sendrecv routine
+7. `barrier.py` 
+    - Simple barrier example
+8. `custom_collective{_np}.py`
+    - Two examples of implementing a custom reduce operation
+        - Computing the product of Complex numbers (one per each MPI process) - Complex class defined in `Complex.py`
+        - Identifying the array indexes containing odd numbers in at least one process (all processes contining a numpy array of the same size)
+9. `wtime.py`
+    - Time measurement for mpi processes
+10. Cartesian topology examples `cart_{topology, shift}.py`
+    - Two examples for creating a cartesian topology and identifying the neighbor processes
