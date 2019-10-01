@@ -1,4 +1,7 @@
+#!/usr/bin/env python 
 from mpi4py import MPI
+
+# Example for creating a cartesian topology
 
 comm = MPI.COMM_WORLD
 world_rank = comm.Get_rank()
