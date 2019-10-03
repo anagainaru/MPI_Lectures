@@ -62,15 +62,15 @@ if __name__ == "__main__":
     else:
         global_data = None
 
-    comm.barrier();
-    local_wt = MPI.Wtime();
-
     local_array_size = global_array_size // size
     local_data = np.array([0] * local_array_size)
     comm.Scatter([global_data, MPI.INT], [local_data, MPI.INT], root=0)    
 
     if verbose:
         print("Rank %d: data %s" %(rank, local_data))
+
+    comm.barrier();
+    local_wt = MPI.Wtime();
 
     local_data.sort()
     
