@@ -28,6 +28,9 @@ if __name__ == "__main__":
     w = 1.0 / n
     mypi = 0.0
 
+    comm.barrier();
+    local_wt = MPI.Wtime();
+
     for i in range(rank + 1, n + 1, size):
         mypi += w * np.sqrt(1 - np.power(i / n, 2))
 
@@ -35,6 +38,9 @@ if __name__ == "__main__":
         print("rank %d: my local pi %5.3f" %(rank, mypi))
 
     pi = comm.reduce(mypi, op=MPI.SUM, root=0)
+    local_wt = MPI.Wtime() - local_wt;
+
+    wt = comm.reduce(local_wt, op=MPI.MAX, root=0);
 
     if rank==0:
-        print("PI: %f" %(4 * pi))
+        print("Time: %f; PI: %f" %(wt, 4 * pi))
