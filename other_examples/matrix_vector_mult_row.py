@@ -38,11 +38,11 @@ if __name__ == "__main__":
         A = None
         vect = np.empty(number_rows, dtype='i') 
 
-    comm.barrier();
-    local_wt = MPI.Wtime();
-
     comm.Scatter([A, MPI.INT], [local_A, MPI.INT], root=0)
     comm.Bcast([vect, MPI.INT], root=0)
+
+    comm.barrier();
+    local_wt = MPI.Wtime();
     
     if verbose:
         print("rank %d: matrix %s" %(rank, local_A))
