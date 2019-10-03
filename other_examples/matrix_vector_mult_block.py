@@ -34,12 +34,16 @@ if __name__ == "__main__":
     # create vector and matrix data on root and
     # send corresponding chunks to each process
 
+    comm.barrier();
+    local_wt = MPI.Wtime();
+
     local_A = np.zeros(chunk_size, dtype='i')
     local_vect = np.zeros(chunk_size, dtype='i')
     if rank==0:
         A = np.matrix([[i + 2 * j for i in range(number_rows)] for j in range(number_rows)], dtype='i')
         vect = np.array([i % 2 for i in range(number_rows)], dtype='i')
-        print("Multiply matrix %s with vector %s" %(A, vect))
+        if verbose:
+            print("Multiply matrix %s with vector %s" %(A, vect))
 
         for i in range(size):
             offset = (i % chunk_per_row) * chunk_size
@@ -80,5 +84,11 @@ if __name__ == "__main__":
             rnk = status.Get_source()
             res[rnk // chunk_per_row] = ret
 
-        print("Multiplication result %s" %(res))
+        if verbose:
+            print("Multiplication result %s" %(res))
 
+    local_wt = MPI.Wtime() - local_wt;
+    wt = comm.reduce(local_wt, op=MPI.MAX, root=0);
+
+    if rank == 0:
+        print("Time to multiply %f" %(wt))

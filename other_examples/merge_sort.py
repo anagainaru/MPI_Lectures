@@ -2,6 +2,7 @@
 from mpi4py import MPI
 import numpy as np
 import random
+import sys
 from heapq import merge 
 
 # Example 2: Merge Sort
@@ -43,6 +44,10 @@ if __name__ == "__main__":
             "Number of processes must be power of 2"
 
     global_array_size = size * 4
+    if len(sys.argv)>1:
+        global_array_size = int(sys.argv[1])
+        assert (global_array_size % size ==0)
+
     # calculate total height of tree
     height = int(np.log2(size))
 
@@ -51,13 +56,16 @@ if __name__ == "__main__":
         global_data = list(range(global_array_size))
         random.shuffle(global_data)
         global_data = np.array(global_data)
-        print("Global data %s" %(global_data))
         if verbose:
+            print("Global data %s" %(global_data))
             print("Tree of hight %d" %(height))
     else:
         global_data = None
 
-    local_array_size = 4
+    comm.barrier();
+    local_wt = MPI.Wtime();
+
+    local_array_size = global_array_size // size
     local_data = np.array([0] * local_array_size)
     comm.Scatter([global_data, MPI.INT], [local_data, MPI.INT], root=0)    
 
@@ -70,6 +78,13 @@ if __name__ == "__main__":
         print("Rank %d: local data sorted %s" %(rank, local_data))
 
     res = merge_sort(height, rank, local_data, comm)
+
+    local_wt = MPI.Wtime() - local_wt;
+    wt = comm.reduce(local_wt, op=MPI.MAX, root=0);
+
     if rank == 0:
-        print("Sorted array %s" %(res))
+        if verbose:
+            print("Sorted array %s" %(res))
         assert(all(res[i] <= res[i+1] for i in range(len(res)-1)))
+        print("Time to sort %d elements on %d processes: %f" %(
+            global_array_size, size, wt))

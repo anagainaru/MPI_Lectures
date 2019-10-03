@@ -32,11 +32,15 @@ if __name__ == "__main__":
     if rank==0:
         A = np.matrix([[i + 2 * j for i in range(number_rows)] for j in range(number_rows)], dtype='i')
         vect = np.array([i % 2 for i in range(number_rows)], dtype='i')
-        print("Multiply matrix %s with vector %s" %(A, vect))
+        if verbose:
+            print("Multiply matrix %s with vector %s" %(A, vect))
     else:
         A = None
         vect = np.empty(number_rows, dtype='i') 
-    
+
+    comm.barrier();
+    local_wt = MPI.Wtime();
+
     comm.Scatter([A, MPI.INT], [local_A, MPI.INT], root=0)
     comm.Bcast([vect, MPI.INT], root=0)
     
@@ -58,6 +62,11 @@ if __name__ == "__main__":
         res = np.empty(size * my_row_count, dtype='i')
 
     comm.Gather([local_res, MPI.INT], [res, MPI.INT], root=0)
+    
+    local_wt = MPI.Wtime() - local_wt;
+    wt = comm.reduce(local_wt, op=MPI.MAX, root=0);
 
     if rank==0:
-        print("Multiplication result %s" %(res))
+        if verbose:
+            print("Multiplication result %s" %(res))
+        print("Time to multiply: %f" %(wt))
