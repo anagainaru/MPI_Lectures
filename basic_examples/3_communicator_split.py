@@ -8,7 +8,7 @@ world_rank = MPI.COMM_WORLD.Get_rank()
 world_size = MPI.COMM_WORLD.Get_size()
 
 # Determine color based on even/odd ranks
-color = world_rank / 2; 
+color = world_rank % 2; 
 
 # Split the communicator based on the color and use the
 # original rank for ordering
