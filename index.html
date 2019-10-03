@@ -15859,7 +15859,31 @@ PI: <span class="m">3</span>.141391
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Performance">Performance<a class="anchor-link" href="#Performance">&#182;</a></h1>
+<h1 id="Performance">Performance<a class="anchor-link" href="#Performance">&#182;</a></h1><ul>
+<li>Strong scaling<ul>
+<li>Keep the problem size the same</li>
+<li>Increase the number of processes</li>
+</ul>
+</li>
+</ul>
+<p><cite> Example: 6.4 mil slices (2 to 64 processes) </cite></p>
+<ul>
+<li>Weak scaling<ul>
+<li>Increase the problem size proportional with the number of processes</li>
+</ul>
+</li>
+</ul>
+<p><cite> Example: keep 100k slices per processes </cite></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Performance">Performance<a class="anchor-link" href="#Performance">&#182;</a></h1><p><img src="./figures/pi_scalability.png" alt="pi performance" align="left" width="450"/>
+<img src="./figures/pi_speed-up.png" alt="pi speed-up" align="right" width="450"/></p>
+
 </div>
 </div>
 </div></section></section><section><section>
