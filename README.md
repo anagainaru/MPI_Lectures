@@ -40,6 +40,8 @@ Slides at: https://anagainaru.github.io/MPI_Lectures
 **Code examples**
 ---
 
+*Basic Codes*
+
 1. `hello_world.py`
     - Basic hello world example
 2. `rank_hello.py`
@@ -64,3 +66,12 @@ Slides at: https://anagainaru.github.io/MPI_Lectures
     - Time measurement for mpi processes
 10. Cartesian topology examples `cart_{topology, shift}.py`
     - Two examples for creating a cartesian topology and identifying the neighbor processes
+
+*Other codes*
+
+- Computing PI
+    - Using numerical integration
+- Merge Sort
+- Matrix Vector Multiplication
+    - Split by row
+    - Split in blocks within one row
